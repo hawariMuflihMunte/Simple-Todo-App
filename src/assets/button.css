@@ -1,0 +1,18 @@
+a,
+button {
+  outline: 0;
+  border: 0;
+  /* margin: 1.5px; */
+  padding: 8px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: 180ms linear;
+}
+
+button {
+  background-color: hsla(160, 100%, 37%, 1);
+}
+
+button:hover {
+  opacity: 0.8;
+}
