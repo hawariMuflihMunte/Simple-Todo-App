@@ -1,8 +1,8 @@
 <template>
   <section>
     <form @submit.prevent="addTask">
-      <input type="text" v-model="taskName">
-      <input type="text" v-model="dueDate">
+      <input type="text" v-model="taskName" />
+      <input type="text" v-model="dueDate" />
       <textarea v-model="description"></textarea>
       <button type="submit">Add Task</button>
     </form>
@@ -24,13 +24,13 @@ export default {
       // Validate Task Name
       if (this.taskName === '') {
         alert('Empty Task Name')
-        return;
+        return
       }
 
       // Validate Task Due Date
       if (this.dueDate === '') {
         alert('Empty Task Due Date')
-        return;
+        return
       }
 
       const id = +new Date()

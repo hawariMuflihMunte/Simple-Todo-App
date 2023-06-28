@@ -12,12 +12,8 @@
       <template v-if="showError">
         <label class="error"><small>Empty Task Title</small></label>
       </template>
-      <input
-        v-model="newData.title"
-        @keydown.enter="addTask"
-        type="text"
-        placeholder="Title">
-      <input v-model="newData.dueDate" type="date" placeholder="Due Date">
+      <input v-model="newData.title" @keydown.enter="addTask" type="text" placeholder="Title" />
+      <input v-model="newData.dueDate" type="date" placeholder="Due Date" />
       <textarea v-model="newData.description" placeholder="Description"></textarea>
       <button class="full-width" @click="addTask">Add Task</button>
     </div>
@@ -44,7 +40,13 @@
             <td>{{ index + 1 }}</td>
             <td>
               <template v-if="d.editing">
-                <input v-model="d.name" type="text" autofocus @keydown.enter="editingSave(d)" @keydown.esc="editingCancel(d)">
+                <input
+                  v-model="d.name"
+                  type="text"
+                  autofocus
+                  @keydown.enter="editingSave(d)"
+                  @keydown.esc="editingCancel(d)"
+                />
               </template>
               <template v-else>
                 {{ d.name }}
@@ -52,7 +54,13 @@
             </td>
             <td>
               <template v-if="d.editing">
-                <input v-model="d.dueDate" type="date" autofocus @keydown.enter="editingSave(d)" @keydown.esc="editingCancel(d)">
+                <input
+                  v-model="d.dueDate"
+                  type="date"
+                  autofocus
+                  @keydown.enter="editingSave(d)"
+                  @keydown.esc="editingCancel(d)"
+                />
               </template>
               <template v-else>
                 {{ d.dueDate }}
@@ -60,7 +68,13 @@
             </td>
             <td>
               <template v-if="d.editing">
-                <textarea v-model="d.description" type="text" autofocus @keydown.enter="editingSave(d)" @keydown.esc="editingCancel(d)"></textarea>
+                <textarea
+                  v-model="d.description"
+                  type="text"
+                  autofocus
+                  @keydown.enter="editingSave(d)"
+                  @keydown.esc="editingCancel(d)"
+                ></textarea>
               </template>
               <template v-else>
                 {{ d.description }}
@@ -82,7 +96,13 @@
             <td>{{ index + 1 }}</td>
             <td>
               <template v-if="d.editing">
-                <input v-model="d.name" type="text" autofocus @keydown.enter="editingSave(d)" @keydown.esc="editingCancel(d)">
+                <input
+                  v-model="d.name"
+                  type="text"
+                  autofocus
+                  @keydown.enter="editingSave(d)"
+                  @keydown.esc="editingCancel(d)"
+                />
               </template>
               <template v-else>
                 {{ d.name }}
@@ -90,7 +110,13 @@
             </td>
             <td>
               <template v-if="d.editing">
-                <input v-model="d.dueDate" type="date" autofocus @keydown.enter="editingSave(d)" @keydown.esc="editingCancel(d)">
+                <input
+                  v-model="d.dueDate"
+                  type="date"
+                  autofocus
+                  @keydown.enter="editingSave(d)"
+                  @keydown.esc="editingCancel(d)"
+                />
               </template>
               <template v-else>
                 {{ d.dueDate }}
@@ -98,7 +124,13 @@
             </td>
             <td>
               <template v-if="d.editing">
-                <textarea v-model="d.description" type="text" autofocus @keydown.enter="editingSave(d)" @keydown.esc="editingCancel(d)"></textarea>
+                <textarea
+                  v-model="d.description"
+                  type="text"
+                  autofocus
+                  @keydown.enter="editingSave(d)"
+                  @keydown.esc="editingCancel(d)"
+                ></textarea>
               </template>
               <template v-else>
                 {{ d.description }}
@@ -114,7 +146,7 @@
               <button @click="editingCancel(d)" v-if="d.editing">Cancel</button>
             </td>
           </tr>
-        </template> 
+        </template>
       </tbody>
       <tbody v-else>
         <tr>
@@ -126,7 +158,7 @@
 </template>
 
 <script>
-import tasks from './data/data';
+import tasks from './data/data'
 
 export default {
   data() {
@@ -137,7 +169,7 @@ export default {
       newData: {
         title: '',
         dueDate: '',
-        description: '',
+        description: ''
       },
       showError: false
     }
@@ -157,7 +189,7 @@ export default {
   },
   computed: {
     hideCompleted() {
-      return this.data.filter(d => !d.completed)
+      return this.data.filter((d) => !d.completed)
     }
   },
   methods: {
@@ -179,22 +211,18 @@ export default {
     },
     addTask() {
       if (this.newData.title !== '') {
-        this.showError = false        
+        this.showError = false
 
         const id = +new Date()
         const newDataToBeInsertedIntoDataArray = {
           id,
           name: this.newData.title,
-          dueDate: this.newData.dueDate === '' ?
-            'N/A':
-            this.newData.dueDate,
-          description: this.newData.description === '' ?
-            'N/A':
-            this.newData.description
+          dueDate: this.newData.dueDate === '' ? 'N/A' : this.newData.dueDate,
+          description: this.newData.description === '' ? 'N/A' : this.newData.description
         }
 
-        this.data.push(newDataToBeInsertedIntoDataArray);
-        console.log(this.data);
+        this.data.push(newDataToBeInsertedIntoDataArray)
+        console.log(this.data)
 
         setTimeout(() => {
           // Perform data clearance
@@ -203,14 +231,14 @@ export default {
           this.newData.description = ''
 
           this.toggleAddTaskDialog()
-        }, 200);
+        }, 200)
       } else {
         this.showError = true
       }
     },
     deleteTask(id) {
       if (confirm('Are you sure want to delete this task?')) {
-        const index = this.data.findIndex(d => d.id === id)
+        const index = this.data.findIndex((d) => d.id === id)
 
         if (index !== -1) {
           this.data.splice(index, 1)
@@ -232,15 +260,11 @@ export default {
     editingSave(task) {
       task.editing = false
 
-      this.data.forEach(d => {
+      this.data.forEach((d) => {
         if (d.id === task.id) {
           d.name = task.name
-          d.dueDate = task.dueDate === '' ?
-            'N/A':
-            task.dueDate
-          d.description = task.description === '' ?
-            'N/A':
-            task.description
+          d.dueDate = task.dueDate === '' ? 'N/A' : task.dueDate
+          d.description = task.description === '' ? 'N/A' : task.description
         }
       })
     },

@@ -17,7 +17,12 @@
           <td>{{ index + 1 }}</td>
           <td>
             <template v-if="d.editing">
-              <input v-model="d.name" autofocus @keydown.enter="editingSave(d)" @keydown.esc="editingCancel(d)">
+              <input
+                v-model="d.name"
+                autofocus
+                @keydown.enter="editingSave(d)"
+                @keydown.esc="editingCancel(d)"
+              />
             </template>
             <template v-else>
               {{ d.name }}
@@ -25,7 +30,12 @@
           </td>
           <td>
             <template v-if="d.editing">
-              <input v-model="d.dueDate" autofocus @keydown.enter="editingSave(d)" @keydown.esc="editingCancel(d)">
+              <input
+                v-model="d.dueDate"
+                autofocus
+                @keydown.enter="editingSave(d)"
+                @keydown.esc="editingCancel(d)"
+              />
             </template>
             <template v-else>
               {{ d.dueDate }}
@@ -33,14 +43,21 @@
           </td>
           <td>
             <template v-if="d.editing">
-              <textarea v-model="d.description" autofocus @keydown.enter="editingSave(d)" @keydown.esc="editingCancel(d)"></textarea>
+              <textarea
+                v-model="d.description"
+                autofocus
+                @keydown.enter="editingSave(d)"
+                @keydown.esc="editingCancel(d)"
+              ></textarea>
             </template>
             <template v-else>
               {{ d.description }}
             </template>
           </td>
           <td>
-            <button @click="toggleCompleted(d)" v-if="!d.editing">{{ d.completed ? 'Undone' : 'Done' }}</button>
+            <button @click="toggleCompleted(d)" v-if="!d.editing">
+              {{ d.completed ? 'Undone' : 'Done' }}
+            </button>
             <button @click="editingStart(d)" v-if="!d.editing">Edit</button>
             <button @click="deleteTask(d.id)" v-if="!d.editing">Delete</button>
             <button @click="editingCancel(d)" v-if="d.editing">Cancel</button>
@@ -73,7 +90,7 @@ export default {
         return displayedData.value // Return all tasks
       } else {
         // Filter out completed tasks
-        return displayedData.value.filter(t => !t.completed)
+        return displayedData.value.filter((t) => !t.completed)
       }
     })
 
@@ -93,7 +110,7 @@ export default {
 
     function deleteTask(id) {
       if (confirm('Are you sure want to delete this task?')) {
-        const updatedData = displayedData.value.filter(d => d.id !== id)
+        const updatedData = displayedData.value.filter((d) => d.id !== id)
         update(updatedData)
       }
     }
@@ -108,7 +125,7 @@ export default {
     }
 
     function updateSave() {
-      const updatedData = displayedData.value.map(t => ({ ...t }))
+      const updatedData = displayedData.value.map((t) => ({ ...t }))
       props.onUpdateSave(updatedData)
     }
 

@@ -14,37 +14,35 @@
 </template>
 
 <script>
-import AddTaskForm from './AddTaskForm.vue';
+import AddTaskForm from './AddTaskForm.vue'
 
 export default {
-    emits: ['addedTask'],
-    data() {
-        return {
-            showAddTask: false
-        };
+  emits: ['addedTask'],
+  data() {
+    return {
+      showAddTask: false
+    }
+  },
+  methods: {
+    toggleShowTask() {
+      this.showAddTask = !this.showAddTask
     },
-    methods: {
-        toggleShowTask() {
-          this.showAddTask = !this.showAddTask;
-        },
-        handleAddTaskForm(e) {
-          const target = e.target
+    handleAddTaskForm(e) {
+      const target = e.target
 
-          const addTaskForm = this.$refs.addTaskForm
+      const addTaskForm = this.$refs.addTaskForm
 
-          if (target === addTaskForm) {
-            this.showAddTask = !this.showAddTask
-          }
-        },
-        handleAddTask(data) {
-          this.toggleShowTask()
-          this.$emit('addedTask', data)
-        }
+      if (target === addTaskForm) {
+        this.showAddTask = !this.showAddTask
+      }
     },
-    components: { AddTaskForm }
+    handleAddTask(data) {
+      this.toggleShowTask()
+      this.$emit('addedTask', data)
+    }
+  },
+  components: { AddTaskForm }
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
